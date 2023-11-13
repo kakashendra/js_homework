@@ -1,0 +1,43 @@
+<html>
+<head>
+	<title>My Hemming Code</title>
+	<script>
+	function code() {
+        let inputText = document.getElementById('inpMessage').value;
+		//todo
+		let kbit = '';
+		let inputText1 = inputText;
+		inputText1 = inputText1.split('').map(Number);
+			for (let i = 0; i<3; i++) {
+			if ((inputText1[i-1] + inputText1[i] + inputText1[i+1]) % 2 == 0) {
+			kbit += '1';
+
+			} else {
+				kbit += '0';
+			}
+		}
+		document.getElementById('outpMessage').value = inputText + kbit;
+    }
+	
+	function check() {
+		document.getElementById('outpMessage').value = inputText + kbit;
+		let outputText = document.getElementById('outMessage').value;
+			for (let i = 0; i<3; i++) {
+			if ((inputText1[i-1] + inputText1[i] + inputText1[i+1]) % 2 == 0) && (inputText1[i+2] == 1)); {
+				i++
+			if (i == 3); {
+
+			} elseif ((inputText1[i-1] + inputText1[i] + inputText1[i+1]) % 2 == 0) && (inputText1[i+2] == 1))
+	}
+	</script>
+</head>
+<body>
+	<h1>Hemming code</h1>
+	<p><input type='text' id='inpMessage'/> input message, 4 dits</p>
+	<p><input type='button' value='Code' onclick='code("inpMessage")'/></p>
+	<p><input type='text' id='outpMessage'/> coded message</p>
+	<p><input type='button' value='Check' onclick='check("inpMessage")'/></p>
+	<p><input type='text' id = 'inpMessage'/> original message</p>
+	<p></p>
+</body>
+</html>
