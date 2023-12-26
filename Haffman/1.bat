@@ -1,0 +1,2 @@
+node Huffman.js
+pause
