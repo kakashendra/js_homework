@@ -1,0 +1,2 @@
+node GoVirt.js
+pause

@@ -1,0 +1,10 @@
+set @number, 3
+set @current, 1
+:multiply
+mul @current, @number
+add @number, -1
+cmr @number, 0
+jg :result
+jump :multiply
+:result
+write @current

@@ -1,0 +1,20 @@
+set @firstNumber, 12
+set @secondNumber, 6
+:circle
+cmr @firstNumber, @secondNumber
+jg :result
+grt @firstNumber, @secondNumber
+jg :firstGreater
+jump :firstLesser
+:firstGreater
+mul @secondNumber, -1
+add @firstNumber, @secondNumber
+mul @secondNumber, -1
+jump :circle
+:firstLesser
+mul @firstNumber, -1
+add @secondNumber, @firstNumber
+mul @firstNumber, -1
+jump :circle
+:result
+write @firstNumber
