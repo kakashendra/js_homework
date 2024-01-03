@@ -1,43 +1,73 @@
+
 <html>
-<head>
-	<title>My Hemming Code</title>
-	<script>
-	function code() {
-        let inputText = document.getElementById('inpMessage').value;
-		//todo
-		let kbit = '';
-		let inputText1 = inputText;
-		inputText1 = inputText1.split('').map(Number);
-			for (let i = 0; i<3; i++) {
-			if ((inputText1[i-1] + inputText1[i] + inputText1[i+1]) % 2 == 0) {
-			kbit += '1';
-
-			} else {
-				kbit += '0';
-			}
-		}
-		document.getElementById('outpMessage').value = inputText + kbit;
-    }
-	
-	function check() {
-		document.getElementById('outpMessage').value = inputText + kbit;
-		let outputText = document.getElementById('outMessage').value;
-			for (let i = 0; i<3; i++) {
-			if ((inputText1[i-1] + inputText1[i] + inputText1[i+1]) % 2 == 0) && (inputText1[i+2] == 1)); {
-				i++
-			if (i == 3); {
-
-			} elseif ((inputText1[i-1] + inputText1[i] + inputText1[i+1]) % 2 == 0) && (inputText1[i+2] == 1))
-	}
-	</script>
-</head>
-<body>
-	<h1>Hemming code</h1>
-	<p><input type='text' id='inpMessage'/> input message, 4 dits</p>
-	<p><input type='button' value='Code' onclick='code("inpMessage")'/></p>
-	<p><input type='text' id='outpMessage'/> coded message</p>
-	<p><input type='button' value='Check' onclick='check("inpMessage")'/></p>
-	<p><input type='text' id = 'inpMessage'/> original message</p>
-	<p></p>
-</body>
+    <head>
+        <title>MyCode</title>
+        <script>
+        function encode()
+        {
+            let input = document.getElementById('inpMsg').value;
+            let nums = input.split('');
+            let flag = false;
+            if (nums.length != 4)
+            {
+                alert("wrong input msg");
+                flag = true;
+                input = '';
+            }
+            for (i = 0; i < nums.length;i++)
+            {
+                nums[i] = parseInt(nums[i]);
+                if (!(nums[i] == 1 || nums[i] == 0))
+                {
+                    alert("wrong input msg");
+                    flag = true;
+                    input = '';
+                }
+            }
+            if (!flag)
+            {
+                input += (nums[0] + nums[1] + nums[3]) % 2;
+                input += (nums[2] + nums[1] + nums[3]) % 2;
+                input += (nums[0] + nums[2] + nums[3]) % 2;
+            }
+            document.getElementById('encodedMsg').value = input;
+        }
+        function decode()
+        {
+            let msg = document.getElementById('encodedMsg').value;
+            let nums = msg.split('');
+            for (i = 0; i < nums.length;i++)
+                nums[i] = parseInt(nums[i]);
+            let flag1 = (nums[0] + nums[1] + nums[3] + nums[4]) % 2 == 0;
+            let flag2 = (nums[2] + nums[1] + nums[3] + nums[5]) % 2 == 0;
+            let flag3 = (nums[2] + nums[1] + nums[3] + nums[6]) % 2 == 0;
+            if (!flag1 && !flag2 && !flag3)
+            {
+                nums[3] = nums[3] == 1 ? 0 : 1;
+            }
+            else if(!flag1 && !flag2)
+                nums[1] = nums[1] == 1 ? 0 : 1;
+            else if (!flag1 && !flag3)
+                nums[0] = nums[0] == 1 ? 0 : 1;
+            else if (!flag2 && !flag3)
+                nums[2] = nums[2] == 1 ? 0 : 1;
+            else if (!flag1)
+                nums[4] = nums[4] == 1 ? 0 : 1;
+            else if (!flag2)
+                nums[5] = nums[5] == 1 ? 0 : 1;
+            else if (!flag3)
+                nums[6] = nums[6] == 1 ? 0 : 1;
+            msg = nums.join('');
+            document.getElementById('originalMsg').value = msg;
+        }
+        </script>
+    </head>
+    <body>
+        <h1> My Hemming Code </h1>
+        <p><input type = 'text' id ='inpMsg'/> input message, 4 bits </p>
+        <p><input type = 'button' value = 'encode' onclick = 'encode()'/></p>
+        <p><input type = 'text' id = 'encodedMsg'/> encoded msg </p>
+        <p><input type = 'button' value = 'check' onclick = 'decode()'/></p>
+        <p><input type = 'text' id = 'originalMsg'/> original msg </p>
+    </body>
 </html>
